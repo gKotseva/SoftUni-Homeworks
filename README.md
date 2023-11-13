@@ -1,2 +1,2 @@
 # SoftUni-Homeworks
-A repository containing my resolution on the homework given by the Software University throughout the courses.
+A repository containing my resolutions on the homeworks given by the Software University throughout the courses.
