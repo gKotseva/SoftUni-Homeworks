@@ -30,4 +30,9 @@ create table products (
     category_id int not null
 );
 
+-- 2. Insert Data in tables
+
+-- Inserting data can be done with a query too. To do that we use the "INSERT" clause. Populate the "employees" table with 3 test values.
+
+insert into employees(first_name, last_name) values('Gabi', 'Kotseva'), ('Kris', 'Hristov'), ('Maya', 'Kotseva');
 
