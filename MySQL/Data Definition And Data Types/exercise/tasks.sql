@@ -20,3 +20,15 @@ add column town_id int;
 
 alter table minions
 add foreign key (town_id) references towns(id);
+
+-- 3.	Insert Records in Both Tables
+-- Populate both tables with sample records given in the table below.
+
+insert into towns(id, name) value(1, 'Sofia');
+insert into towns(id, name) value(2, 'Plovdiv');
+insert into towns(id, name) value(3, 'Varna');
+
+insert into minions(id, name, age, town_id) value(1, 'Kevin', 22, 1);
+insert into minions(id, name, age, town_id) value(2, 'Bob', 15, 3);
+insert into minions(id, name, age, town_id) value(3, 'Steward', Null, 2);
+
