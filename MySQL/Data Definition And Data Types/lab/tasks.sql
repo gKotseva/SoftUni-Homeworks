@@ -46,3 +46,7 @@ add middle_name varchar(50) not null;
 alter table products
 add constraint FOREIGN KEY (category_id) REFERENCES categories(id)
 
+-- 5. Modifying Columns
+-- Change the property "VARCHAR(50)" to "VARCHAR(100)" to the "middle_name" column in "employees" table.
+
+alter table employees modify column middle_name varchar(100) not null;
