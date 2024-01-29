@@ -37,3 +37,8 @@ insert into minions(id, name, age, town_id) value(3, 'Steward', Null, 2);
 
 truncate minions;
 
+-- 5.	Drop All Tables
+-- Delete all tables from the minions database using SQL query. Submit your query in Judge as Run skeleton, run queries & check DB.
+
+drop table minions;
+drop table towns;
