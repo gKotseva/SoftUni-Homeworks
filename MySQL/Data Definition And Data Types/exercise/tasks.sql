@@ -32,3 +32,8 @@ insert into minions(id, name, age, town_id) value(1, 'Kevin', 22, 1);
 insert into minions(id, name, age, town_id) value(2, 'Bob', 15, 3);
 insert into minions(id, name, age, town_id) value(3, 'Steward', Null, 2);
 
+-- 4.	Truncate Table Minions
+-- Delete all the data from the minions table using SQL query. Submit your query in Judge as Run skeleton, run queries & check DB.
+
+truncate minions;
+
