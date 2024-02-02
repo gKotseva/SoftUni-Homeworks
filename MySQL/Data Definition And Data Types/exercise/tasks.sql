@@ -1,5 +1,5 @@
 -- 1.	Create Tables
--- In the newly created database Minions add table minions (id, name, age). Then add new table towns (town_id, name). Set id and town_id columns of both tables to be primary key as constraint, id's must be auto increment. Submit yours create table queries in Judge together for both tables (one after another separated by ";") as Run queries & check DB.
+-- In the newly created database Minions add table minions (id, name, age). Then add new table towns (town_id, name). Set id and town_id columns of both tables to be primary key as constraint, id's must be auto increment. 
 
 create table minions (
 id int auto_increment primary key,
@@ -13,7 +13,7 @@ name varchar(80)
 );
 
 -- 2.	Alter Minions Table
--- Change the structure of the Minions table to have new column town_id that would be of the same type as the id column of towns table. Add new constraint that makes town_id foreign key and references to id column of towns table. Submit your create table query in Judge as MySQL run skeleton, run queries & check DB
+-- Change the structure of the Minions table to have new column town_id that would be of the same type as the id column of towns table. Add new constraint that makes town_id foreign key and references to id column of towns table.
 
 alter table minions
 add column town_id int;
@@ -33,12 +33,12 @@ insert into minions(id, name, age, town_id) value(2, 'Bob', 15, 3);
 insert into minions(id, name, age, town_id) value(3, 'Steward', Null, 2);
 
 -- 4.	Truncate Table Minions
--- Delete all the data from the minions table using SQL query. Submit your query in Judge as Run skeleton, run queries & check DB.
+-- Delete all the data from the minions table using SQL query. 
 
 truncate minions;
 
 -- 5.	Drop All Tables
--- Delete all tables from the minions database using SQL query. Submit your query in Judge as Run skeleton, run queries & check DB.
+-- Delete all tables from the minions database using SQL query. 
 
 drop table minions;
 drop table towns;
@@ -283,4 +283,38 @@ insert into rental_orders(employee_id, customer_id, car_id, car_condition, tank_
 (1, 1, 1, 'good', 28, 90, 80, 100, '2010-09-22', '2010-09-22', 9, 20, 20, 'confirmed', 'good'),
 (2, 2, 2, 'good', 28, 90, 80, 100, '2010-09-22', '2010-09-22', 9, 20, 20, 'confirmed', 'good'),
 (3, 3, 3, 'good', 28, 90, 80, 100, '2010-09-22', '2010-09-22', 9, 20, 20, 'confirmed', 'good');
+
+
+
+-- 13. Basic Insert
+-- Now create bigger database called soft_uni. You will use database in the future tasks. It should hold information about
+-- • towns (id, name)
+-- • addresses (id, address_text, town_id)
+-- • departments (id, name)
+-- • employees (id, first_name, middle_name, last_name, job_title, department_id, hire_date, salary, address_id)
+-- Id columns are auto incremented starting from 1 and increased by 1 (1, 2, 3, 4…). Make sure you use appropriate data types for each column. Add primary and foreign keys as constraints for each table. Use only SQL queries. Consider which fields are always required and which are optional.
+
+insert into towns(name) values('Sofia'), ('Plovdiv'), ('Varna'), ('Burgas');
+insert into departments(name) values('Engineering'),('Sales'),('Marketing'),('Software Development'),('Quality Assurance');
+insert into employees(first_name, middle_name, last_name, job_title, department_id, hire_date, salary) 
+values('Ivan', 'Ivanov', 'Ivanov', '.NET Developer', 4, '2013-02-01', 3500.00),
+('Petar', 'Petrov', 'Petrov', 'Senior Engineer', 1, '2004-03-02', 4000.00),
+('Maria', 'Petrova', 'Ivanova', 'Intern', 5, '2016-08-28', 525.25),
+('Georgi', 'Terziev', 'Ivanov', 'CEO', 2, '2007-12-09', 3000.00),
+('Peter', 'Pan', 'Pan', 'Intern', 3, '2016-08-28', 599.88);
+
+-- 14. Basic Select All Fields
+-- Use the soft_uni database and first select all records from the towns, then from departments and finally from employees table. Use SQL queries and submit them to Judge at once. Submit your query statements as Prepare DB & Run queries.
+
+select * from towns;
+select * from departments;
+select * from employees;
+
+
+
+
+
+
+
+
 
