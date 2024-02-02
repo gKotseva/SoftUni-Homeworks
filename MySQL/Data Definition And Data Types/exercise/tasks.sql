@@ -96,3 +96,23 @@ insert into users(username, password, profile_picture, last_login_time, is_delet
 insert into users(username, password, profile_picture, last_login_time, is_deleted) values('kris', 'whatever', 'whatever', '2000-03-10', 1);
 insert into users(username, password, profile_picture, last_login_time, is_deleted) values('kodi', 'whatever', 'whatever', '2000-03-10', 1);
 
+-- 8. Change Primary Key
+-- Using SQL queries modify table users from the previous task. First remove current primary key then create new primary key that would be combination of fields id and username. The initial primary key name on id is pk_users.
+
+alter table users
+drop primary key,
+add primary key(id, username);
+
+-- 9. Set Default Value of a Field
+-- Using SQL queries modify table users. Make the default value of last_login_time field to be the current time.
+
+alter table users
+change last_login_time last_login_time datetime default now();
+
+-- 10. Set Unique Field
+-- Using SQL queries modify table users. Remove username field from the primary key so only the field id would be primary key. Now add unique constraint to the username field. The initial primary key name on (id, username) is pk_users.
+
+alter table users
+drop primary key,
+add primary key(id),
+add constraint unique(username);
