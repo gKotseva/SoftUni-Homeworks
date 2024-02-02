@@ -116,3 +116,171 @@ alter table users
 drop primary key,
 add primary key(id),
 add constraint unique(username);
+
+-- 11. Movies Database
+-- Using SQL queries create Movies database with the following entities:
+-- · directors (id, director_name, notes)
+-- o director_name cannot be null
+-- · genres (id, genre_name, notes)
+-- o genre_name cannot be null
+-- · categories (id, category_name, notes)
+-- o category_name cannot be null
+-- · movies (id, title, director_id, copyright_year, length, genre_id, category_id, rating, notes)
+-- o title cannot be null
+-- Set most appropriate data types for each column. Set primary key to each table. Populate each table with 5 records. Make sure the columns that are present in 2 tables would be of the same data type. Consider which fields are always required and which are optional.
+
+create table directors (
+	id int primary key unique auto_increment,
+    director_name varchar(80) not null,
+    notes text
+);
+
+insert into directors (director_name, notes) values ('Gabi', 'cool');
+insert into directors (director_name, notes) values ('Kris', 'awesome');
+insert into directors (director_name, notes) values ('Kodi', 'cool');
+insert into directors (director_name, notes) values ('Vasko', 'cool');
+insert into directors (director_name, notes) values ('Maya', 'cool');
+
+create table genres (
+	id int primary key unique auto_increment,
+    genres_name varchar(80) not null unique,
+    notes text
+);
+
+insert into genres (genres_name, notes) values ('Scary', 'scary movie');
+insert into genres (genres_name, notes) values ('Romantic', 'scary movie');
+insert into genres (genres_name, notes) values ('Fiction', 'scary movie');
+insert into genres (genres_name, notes) values ('Documentary', 'scary movie');
+insert into genres (genres_name, notes) values ('Whatever', 'scary movie');
+
+
+create table categories (
+	id int primary key unique auto_increment,
+    category_name varchar(80) not null,
+    notes text
+);
+
+insert into categories (category_name, notes) values ('Scary', 'Good');
+insert into categories (category_name, notes) values ('Romantic', 'Good movie');
+insert into categories (category_name, notes) values ('Fiction', 'Good movie');
+insert into categories (category_name, notes) values ('Documentary', 'Good movie');
+insert into categories (category_name, notes) values ('Whatever', 'Good movie');
+
+
+create table movies (
+	id int primary key unique auto_increment,
+    title varchar(80) not null unique,
+    director_id int,
+    copyright_year date,
+    length time,
+    gendre_id int,
+    category_id int,
+    rating int,
+    notes text
+);
+
+insert into movies (title, director_id, copyright_year, length, gendre_id, category_id, rating, notes) values ('Friends with benefits', 2, '2022-09-20', '1:50', 4, 2, 100, 'funny movie');
+insert into movies (title, director_id, copyright_year, length, gendre_id, category_id, rating, notes) values ('Star wars', 2, '2022-09-20', '1:50', 4, 2, 100, 'funny movie');
+insert into movies (title, director_id, copyright_year, length, gendre_id, category_id, rating, notes) values ('The green mile', 2, '2022-09-20', '1:50', 4, 2, 100, 'funny movie');
+insert into movies (title, director_id, copyright_year, length, gendre_id, category_id, rating, notes) values ('The notebook', 2, '2022-09-20', '1:50', 4, 2, 100, 'funny movie');
+insert into movies (title, director_id, copyright_year, length, gendre_id, category_id, rating, notes) values ('Enemy at the gates', 2, '2022-09-20', '1:50', 4, 2, 100, 'funny movie');
+
+-- 12. Car Rental Database
+-- Using SQL queries create car_rental database with the following entities:
+-- · categories (id, category, daily_rate, weekly_rate, monthly_rate, weekend_rate)
+-- · cars (id, plate_number, make, model, car_year, category_id, doors, picture, car_condition, available)
+-- · employees (id, first_name, last_name, title, notes)
+-- · customers (id, driver_licence_number, full_name, address, city, zip_code, notes)
+-- · rental_orders (id, employee_id, customer_id, car_id, car_condition, tank_level, kilometrage_start, kilometrage_end, total_kilometrage, start_date, end_date, total_days, rate_applied, tax_rate, order_status, notes)
+-- Set most appropriate data types for each column. Set primary key to each table. Populate each table with 3 records. Make sure the columns that are present in 2 tables would be of the same data type. Consider which fields are always required and which are optional.
+
+create table categories(
+	id int primary key auto_increment,
+    category varchar(50) not null,
+    daily_rate int not null,
+    weekly_rate int not null,
+    monthly_rate int not null,
+    weekend_rate int not null
+);
+
+insert into categories(category, daily_rate, weekly_rate, monthly_rate, weekend_rate) values
+('lux', 23, 55, 99, 134),
+('econ', 23, 55, 99, 134),
+('normal', 23, 55, 99, 134);
+
+create table cars(
+	id int primary key auto_increment,
+    plate_number varchar(50) not null,
+    make varchar(100) not null,
+    model varchar(100) not null,
+    car_year date not null,
+    category_id int not null,
+    doors int not null,
+    picture blob not null,
+    car_condition varchar(100) not null,
+    available bit,
+    
+    foreign key(category_id) references categories(id)
+);
+
+insert into cars(plate_number, make, model, car_year, category_id, doors, picture, car_condition, available) values
+('whatever', 'whatever', 'whatever', '2010-09-22', 2, 4, 'whatever', 'good', true),
+('whatever', 'whatever', 'whatever', '2010-09-22', 1, 2, 'whatever', 'dirty', false),
+('whatever', 'whatever', 'whatever', '2010-09-22', 3, 3, 'whatever', 'clean', true);
+
+create table employees(
+	id int primary key auto_increment,
+    first_name varchar(50) not null,
+    last_name varchar(50) not null,
+    title varchar(10) not null,
+    notes varchar(100) not null
+);
+
+insert into employees(first_name, last_name, title, notes) values
+('Gabi', 'Kotseva', 'ms', 'good'),
+('Maya', 'Kotseva', 'mr', 'good worker'),
+('Kristina', 'Kotseva', 'mr', 'good cleaner');
+
+create table customers(
+	id int primary key auto_increment,
+    driver_license_number varchar(20) not null,
+    full_name varchar(100) not null,
+    address varchar(200) not null,
+    city varchar(50) not null,
+    zip_code varchar(20) not null,
+    notes varchar(100) not null
+);
+
+insert into customers(driver_license_number, full_name, address, city, zip_code, notes) values
+('38259825', 'Ivan Ivanov', 'whatever', 'whatever', 1000, 'good'),
+('38259258928825', 'Petar Petrov', 'whatever', 'whatever', 1583, 'good'),
+('38225', 'Kiril Kirilov', 'whatever', 'whatever', 2000, 'good');
+
+create table rental_orders(
+	id int primary key auto_increment,
+    employee_id int not null,
+    customer_id int not null,
+    car_id int not null,
+    car_condition varchar(50) not null,
+    tank_level int not null,
+    kilometrage_start int not null,
+    kilometrage_end int not null,
+    total_kilometrage int not null,
+    start_date date not null,
+    end_date date not null,
+    total_days int not null,
+    rate_applied varchar(50) not null,
+    tax_rate varchar(50) not null,
+    order_status varchar(50) not null,
+    notes varchar(100) not null,
+    
+    foreign key(employee_id) references employees(id),
+    foreign key(customer_id) references customers(id),
+    foreign key(car_id) references cars(id)
+);
+
+insert into rental_orders(employee_id, customer_id, car_id, car_condition, tank_level, kilometrage_start, kilometrage_end, total_kilometrage, start_date, end_date, total_days, rate_applied, tax_rate, order_status, notes) values
+(1, 1, 1, 'good', 28, 90, 80, 100, '2010-09-22', '2010-09-22', 9, 20, 20, 'confirmed', 'good'),
+(2, 2, 2, 'good', 28, 90, 80, 100, '2010-09-22', '2010-09-22', 9, 20, 20, 'confirmed', 'good'),
+(3, 3, 3, 'good', 28, 90, 80, 100, '2010-09-22', '2010-09-22', 9, 20, 20, 'confirmed', 'good');
+
