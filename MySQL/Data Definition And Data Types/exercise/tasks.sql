@@ -42,3 +42,57 @@ truncate minions;
 
 drop table minions;
 drop table towns;
+
+-- 6. Create Table People
+-- Using SQL query create table "people" with columns:
+-- · id – unique number for every person there will be no more than 231-1people. (Auto incremented)
+-- · name – full name of the person will be no more than 200 Unicode characters. (Not null)
+-- · picture – image with size up to 2 MB. (Allow nulls)
+-- · height – In meters. Real number precise up to 2 digits after floating point. (Allow nulls)
+-- · weight – In kilograms. Real number precise up to 2 digits after floating point. (Allow nulls)
+-- · gender – Possible states are m or f. (Not null)
+-- · birthdate – (Not null)
+-- · biography – detailed biography of the person it can contain max allowed Unicode characters. (Allow nulls)
+
+create table people (
+	id int unique primary key auto_increment,
+    name varchar(200) not null,
+    picture blob,
+    height double(6,2) default null,
+    weight double(6,2) default null,
+    gender char(1) not null,
+    birthdate date not null,
+    biography blob
+);
+
+insert into people values (1, 'Gabi', 'text', 178, 40, 'f', '1998-09-29', 'text');
+insert into people values (2, 'Gabi', 'text', 178, 40, 'f', '1998-09-29', 'text');
+insert into people values (3, 'Gabi', 'text', 178, 40, 'f', '1998-09-29', 'text');
+insert into people values (4, 'Gabi', 'text', 178, 40, 'f', '1998-09-29', 'text');
+insert into people values (5, 'Gabi', 'text', 178, 40, 'f', '1998-09-29', 'text');
+
+-- 7. Create Table Users
+-- Using SQL query create table users with columns:
+-- · id – unique number for every user. There will be no more than 263-1 users. (Auto incremented)
+-- · username – unique identifier of the user will be no more than 30 characters (non Unicode). (Required)
+-- · password – password will be no longer than 26 characters (non Unicode). (Required)
+-- · profile_picture – image with size up to 900 KB.
+-- · last_login_time
+-- · is_deleted – shows if the user deleted his/her profile. Possible states are true or false.
+-- Make id primary key. Populate the table with 5 records.
+
+create table users (
+	id int unique primary key auto_increment,
+    username varchar(30) unique not null,
+    password varchar(26) not null,
+    profile_picture blob,
+    last_login_time datetime,
+    is_deleted bit
+);
+
+insert into users(username, password, profile_picture, last_login_time, is_deleted) values('gabi', 'whatever', 'whatever', '2000-03-10', 1);
+insert into users(username, password, profile_picture, last_login_time, is_deleted) values('pesho', 'whatever', 'whatever', '2000-03-10', 1);
+insert into users(username, password, profile_picture, last_login_time, is_deleted) values('gosho', 'whatever', 'whatever', '2000-03-10', 1);
+insert into users(username, password, profile_picture, last_login_time, is_deleted) values('kris', 'whatever', 'whatever', '2000-03-10', 1);
+insert into users(username, password, profile_picture, last_login_time, is_deleted) values('kodi', 'whatever', 'whatever', '2000-03-10', 1);
+
