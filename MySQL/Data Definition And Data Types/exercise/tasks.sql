@@ -311,10 +311,40 @@ select * from departments;
 select * from employees;
 
 
+-- 15. Basic Select All Fields and Order Them
+-- Modify queries from previous problem by sorting:
+-- · towns - alphabetically by name
+-- · departments - alphabetically by name
+-- · employees - descending by salary
 
+select * from towns
+order by name asc;
 
+select * from departments
+order by name asc;
 
+select * from employees
+order by salary desc;
 
+-- 16. Basic Select Some Fields
+-- Modify queries from previous problem to show only some of the columns. For table:
+-- · towns – name
+-- · departments – name
+-- · employees – first_name, last_name, job_title, salary
 
+select name from towns
+order by name asc;
 
+select name from departments
+order by name asc;
 
+select first_name, last_name, job_title, salary from employees
+order by salary desc;
+
+-- 17. Increase Employees Salary
+-- Use softuni database and increase the salary of all employees by 10%. Then select only salary column from the employees table.
+
+update employees
+set salary = salary * 1.1;
+
+select salary from employees;
