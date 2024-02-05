@@ -118,4 +118,41 @@ order by start_date, name, project_id limit 10;
 select first_name, last_name, hire_date from employees
 order by hire_date desc limit 7;
 
+-- 20. Increase Salaries
+-- Write a SQL query to increase salaries of all employees that are in the Engineering, Tool Design, Marketing or Information Services department by 12%. Then select Salaries column from the Employees table.
 
+update employees
+set salary = salary * 1.12
+where department_id=1 or department_id=2 or department_id=4 or department_id=11;
+
+select salary from employees;
+
+-- 21. All Mountain Peaks
+-- Display all mountain peaks in alphabetical order.
+
+select peak_name from peaks
+order by peak_name asc;
+
+-- 22. Biggest Countries by Population
+-- Find the 30 biggest countries by population from Europe. Display the country name and population. Sort the results by population (from biggest to smallest), then by country alphabetically.
+
+select country_name, population from countries
+where continent_code='EU'
+order by population desc, country_name asc limit 30;
+
+-- 23. Countries and Currency (Euro / Not Euro)
+-- Find all countries along with information about their currency. Display the country name, country code and information about its currency: either "Euro" or "Not Euro". Sort the results by country name alphabetically
+
+select country_name, country_code,
+case
+	when currency_code='EUR' then 'Euro'
+    else 'Not Euro'
+end as currency
+from countries
+order by country_name asc;
+
+-- 24. All Diablo Characters
+-- Display the name of all characters in alphabetical order.
+
+select name from characters
+order by name asc;
