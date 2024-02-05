@@ -65,3 +65,31 @@ select first_name, last_name, salary from employees
 where salary > 50000
 order by salary desc;
 
+-- 12. Find 5 Best Paid Employees
+-- Write SQL query to find first and last names about 5 best paid Employees ordered descending by their salary.
+
+select first_name, last_name from employees
+order by salary desc limit 5;
+
+-- 13. Find All Employees Except Marketing
+-- Write a SQL query to find the first and last names of all employees whose department ID is different from 4
+
+select first_name, last_name from employees
+where department_id != 4;
+
+-- 14. Sort Employees Table
+-- Write a SQL query to sort all records in the еmployees table by the following criteria:
+-- • First by salary in decreasing order
+-- • Then by first name alphabetically
+-- • Then by last name descending
+-- • Then by middle name alphabetically
+-- Sort the information by id.
+
+select * from employees
+order by salary desc, first_name asc, last_name desc, middle_name asc, employee_id;
+
+-- 15. Create View Employees with Salaries
+-- Write a SQL query to create a view v_employees_salaries with first name, last name and salary for each employee.
+
+create view v_employees_salaries as
+select first_name, last_name, salary from employees;
