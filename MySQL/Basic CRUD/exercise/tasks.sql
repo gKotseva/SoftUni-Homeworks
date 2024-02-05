@@ -93,3 +93,29 @@ order by salary desc, first_name asc, last_name desc, middle_name asc, employee_
 
 create view v_employees_salaries as
 select first_name, last_name, salary from employees;
+
+-- 16. Create View Employees with Job Titles
+-- Write a SQL query to create view v_employees_job_titles with full employee name and job title. When middle name is NULL replace it with empty string ('').
+
+create view v_employees_job_titles as
+select concat_ws(' ', first_name, middle_name, last_name) as full_name, job_title from employees;
+
+-- 17. Distinct Job Titles
+-- Write a SQL query to find all distinct job titles. Sort the result by job title alphabetically.
+
+select distinct job_title from employees
+order by job_title asc;
+
+-- 18. Find First 10 Started Projects
+-- Write a SQL query to find first 10 started projects. Select all information about them and sort them by start date, then by name. Sort the information by id.
+
+select * from projects
+order by start_date, name, project_id limit 10;
+
+-- 19. Last 7 Hired Employees
+-- Write a SQL query to find last 7 hired employees. Select their first, last name and their hire date.
+
+select first_name, last_name, hire_date from employees
+order by hire_date desc limit 7;
+
+
