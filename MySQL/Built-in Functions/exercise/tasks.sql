@@ -24,3 +24,24 @@ order by employee_id;
 
 select first_name, last_name from employees
 where job_title not like '%engineer%';
+
+-- 5. Find Towns with Name Length
+-- Write a SQL query to find town names that are 5 or 6 symbols long and order them alphabetically by town name.
+
+select name from towns
+where length(name) = 5 or length(name) = 6
+order by name asc;
+
+-- 6. Find Towns Starting With
+-- Write a SQL query to find all towns that start with letters M, K, B or E (case insensitively). Order them alphabetically by town name.
+
+select * from towns
+where name like 'm%' or name like 'k%' or name like 'b%' or name like 'e%'
+order by name asc;
+
+-- 7. Find Towns Not Starting With
+-- Write a SQL query to find all towns that do not start with letters R, B or D (case insensitively). Order them alphabetically by name.
+
+select * from towns
+where name not like 'r%' and name not like 'b%' and name not like 'd%'
+order by name asc;
