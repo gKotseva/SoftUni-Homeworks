@@ -82,4 +82,48 @@ from peaks, rivers
 where lower(right(peak_name, 1)) = lower(left(river_name, 1))
 order by mix asc;
 
+-- 12. Games from 2011 and 2012 Year
+-- Find the top 50 games ordered by start date, then by name. Display only the games from the years 2011 and 2012. Display the start date in the format "YYYY-MM-DD"
 
+select name, date_format(start, "%Y-%m-%d") as start from games
+where year(start) = 2011 or year(start) = 2012
+order by start, name limit 50;
+
+-- 13. User Email Providers
+-- Find information about the email providers of all users. Display the user_name and the email provider. Sort the results by email provider alphabetically, then by username.
+
+select user_name, substring(email, locate('@', email)+1) as `email provider` from users
+order by `email provider`, user_name;
+
+-- 14. Get Users with IP Address Like Pattern
+-- Find the user_name and the ip_address for each user, sorted by user_name alphabetically. Display only the rows, where the ip_address matches the pattern: "___.1%.%.___".
+
+select user_name, ip_address from users
+where ip_address like '___.1%.%.___'
+order by user_name;
+
+-- 15. Show All Games with Duration and Part of the Day
+-- Find all games with their corresponding part of the day and duration. Parts of the day should be Morning (start time is >= 0 and < 12), Afternoon (start time is >= 12 and < 18), Evening (start time is >= 18 and < 24). Duration should be Extra Short (smaller or equal to 3), Short (between 3 and 6 including), Long (between 6 and 10 including) and Extra Long in any other cases or without duration.
+
+select name,
+case 
+	when hour(start) >= 0 and hour(start) < 12 then 'Morning'
+    when hour(start) >= 12 and hour(start) < 18 then 'Afternoon'
+    when hour(start) >= 18 and hour(start) < 24 then 'Evening'
+end as `Part of the Day`,
+case 
+	when duration <= 3 then 'Extra Short'
+    when duration > 3 and duration <= 6 then 'Short'
+    when duration > 6 and duration <= 10 then 'Long'
+    else 'Extra Long'
+end as `Duration`
+from games;
+
+-- 16. Orders Table
+-- You are given a table orders (id, product_name, order_date) filled with data. Consider that the payment for an order must be accomplished within 3 days after the order date. Also the delivery date is up to 1 month. Write a query to show each product's name, order date, pay and deliver due dates.
+
+select product_name, 
+order_date,
+date_add(order_date, interval 3 day) as pay_due,
+date_add(order_date, interval 1 month) as deliver_due
+from orders;
