@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background: linear-gradient(rgba(10, 10, 10, 0.466), rgba(14, 13, 13, 0.5)),
+      url(./images/poster.jpg) no-repeat center center;
+    background-size: 100% 100%;
+    font-family: 'Cormorant Infant';
+  }
+
+header img {
+    width: 80px;
+    height: auto;
+}
+
+nav {
+    padding: 1.5em 7em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+nav ul {
+    display: flex;
+    gap: 3em;
+    list-style-type: none;
+    color: white;
+    font-family: 'Karla';
+    font-size: 18px;
+}
+
+.header-title {
+    padding-top: 5em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-title h1 {
+    font-family: 'Cormorant Infant';
+    padding-bottom: 0.5em;
+    font-size: 90px;
+}
+
+.header-title p {
+    padding-bottom: 5em;
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Karla';
+}
+
+main {
+    font-family: 'Cormorant Infant';
+}
+
+.customer-testimonial {
+    padding: 2em 35em;
+    display: flex;
+    flex-direction: column;
+    background-color: #F8F0E9;
+}
+
+.customer-testimonial h6 {
+    font-family: 'Karla';
+    font-size: 16px;
+    color: rgb(62, 61, 61);
+    font-weight: normal;
+    padding-bottom: 2em;
+}
+
+.customer-testimonial p {
+    font-size: 3em;
+    font-family: 'Cormorant Infant';
+    font-style: italic;
+    font-weight: bold;
+    color: #352B2A;
+}
+
+.support {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E14747;
+    color: white;
+    padding: 2.5em;
+}
+
+.support h3 {
+    padding-bottom: 1.5em;
+    font-family: 'Karla';
+}
+
+.support p {
+    font-family: 'Karla';
+    text-align: center;
+    font-size: 16px;
+    width: 250px;
+    line-height: 1.5em;
+}
+
+.understand-mind {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    background-color: #F8F0E9;
+}
+
+.understand-mind img{
+    width: 30%;
+    height: auto;
+}
+
+.understand-mind .column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 35%;
+    padding-left: 35%;
+}
+
+.understand-mind .column h1 {
+    text-align: center;
+    color: #352B2A;
+    padding: 1.2em 1.2em;
+    font-size: 50px;
+}
+
+.understand-mind .column p {
+    padding-bottom: 3em;
+    font-size: 16px;
+}
+
+.understand-mind a {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    background-color: white;
+    font-family: 'Karla';
+    font-size: 16px;
+}
+
+.understand-mind .column .read-more {
+    margin-bottom: 4em;
+}
+
+.find-local-guide {
+    background-color: #E14747;
+    padding: 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-bottom: 3em;
+}
+
+.find-local-guide h1 {
+    padding-bottom: 2em;
+    font-size: 50px;
+}
+
+.find-local-guide p {
+    padding-bottom: 3.5em;
+    font-size: 18px;
+    text-align: center;
+    padding-left: 24em;
+    padding-right: 24em;
+    font-family: 'Karla';
+}
+
+.find-local-guide a {
+    background-color: #FAD87A;
+    color: black;
+    border-radius: 20px;
+    padding: 0.5em 1em;
+    font-size: 16px;
+    font-family: 'Karla';
+}
+
+footer {
+    background-color: #352B2A;
+    padding: 1em 6em;
+    color: #F8F0E9;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    font-family: 'Karla';
+}
+
+footer img {
+    width: 4%;
+    padding-bottom: 2em;
+}
+
+footer .all-rights {
+    color: #655a59;
+    padding-top: 1em;
+    font-family: 'Karla';
+}
