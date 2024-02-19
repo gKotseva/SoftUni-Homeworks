@@ -168,3 +168,64 @@ where mc.country_code in ('BG', 'RU', 'US')
 group by mc.country_code
 order by mountain_range desc;
 
+-- 14. Countries with Rivers
+-- Write a query that selects:
+-- · country_name
+-- · river_name
+-- Find the first 5 countries with or without rivers in Africa. Sort them by country_name in ascending order.
+
+select c.country_name, river_name from continents as m
+join countries c on c.continent_code=m.continent_code
+left join countries_rivers r on c.country_code=r.country_code
+left join rivers ri on r.river_id=ri.id
+where c.continent_code = 'AF'
+order by c.country_name asc limit 5;
+
+
+-- 15. *Continents and Currencies
+-- Write a query that selects:
+-- · continent_code
+-- · currency_code
+-- · currency_usage
+-- Find all continents and their most used currency. Filter any currency that is used in only one country. Sort the result by continent_code and currency_code.
+
+select c.continent_code, c.currency_code, count(*) as currency_usage from countries c
+group by c.continent_code, c.currency_code
+having currency_usage>1 and currency_usage = (
+select count(*) as content from countries
+where continent_code= c.continent_code
+group by currency_code
+order by content desc
+limit 1
+)
+order by c.continent_code;
+
+
+-- 16. Countries Without Any Mountains
+-- Find the count of all countries which don't have a mountain.
+
+SELECT 
+    COUNT(*) as 'country_count'
+FROM
+    (SELECT 
+        mc.country_code AS 'mc_country_code'
+    FROM
+        `mountains_countries` AS mc
+    GROUP BY mc.country_code) AS d
+        RIGHT JOIN
+    `countries` AS c ON c.country_code = d.mc_country_code
+WHERE
+    d.mc_country_code IS NULL;
+
+
+-- 17. Highest Peak and Longest River by Country
+-- For each country, find the elevation of the highest peak and the length of the longest river, sorted by the highest peak_elevation (from highest to lowest), then by the longest river_length (from longest to smallest), then by country_name (alphabetically). Display NULL when no data is available in some of the columns. Limit only the first 5 rows.
+
+select c.country_name, max(p.elevation) as highest_peak_elevation, max(r.length) as longest_river_length from countries c
+left join mountains_countries mc on c.country_code = mc.country_code
+left join mountains m on mc.mountain_id=m.id
+left join peaks p on m.id=p.mountain_id
+left join countries_rivers cr on c.country_code=cr.country_code
+left join rivers r on cr.river_id=r.id
+group by c.country_name
+order by highest_peak_elevation desc, longest_river_length desc, c.country_name limit 5;
