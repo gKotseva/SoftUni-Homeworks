@@ -57,3 +57,64 @@ begin
     end if;
 	return salary_level;
 end 
+
+-- 6. Employees by Salary Level
+-- Write a stored procedure usp_get_employees_by_salary_level that receive as parameter level of salary (low, average or high) and print the names of all employees that have given level of salary. The result should be sorted by first_name then by last_name both in descending order.
+
+create procedure usp_get_employees_by_salary_level(input_level_salary varchar(50))
+begin
+    SELECT first_name, last_name
+    FROM employees
+    WHERE
+        CASE 
+            WHEN input_level_salary = 'Low' THEN salary < 30000 
+            WHEN input_level_salary = 'Average' THEN salary >= 30000 AND salary <= 50000
+            WHEN input_level_salary = 'High' THEN salary >= 50001
+        END
+    ORDER BY first_name DESC, last_name DESC;
+end 
+
+-- 7. Define Function
+-- Define a function ufn_is_word_comprised(set_of_letters varchar(50), word varchar(50)) that returns 1 or 0 depending on that if the word is a comprised of the given set of letters.
+
+create function ufn_is_word_comprised(set_of_letters varchar(50), word varchar(50))
+returns tinyint
+deterministic
+begin
+	return word regexp concat('^[', set_of_letters, ']+$');
+end 
+
+-- 8. Find Full Name
+-- You are given a database schema with tables:
+-- · account_holders(id (PK), first_name, last_name, ssn)
+-- and
+-- · accounts(id (PK), account_holder_id (FK), balance).
+-- Write a stored procedure usp_get_holders_full_name that selects the full names of all people. The result should be sorted by full_name alphabetically and id ascending.
+
+create procedure usp_get_holders_full_name()
+begin
+	select concat_ws(' ', first_name, last_name) as full_name from account_holders
+    order by full_name, id;
+end 
+
+-- 9. People with Balance Higher Than
+-- Your task is to create a stored procedure usp_get_holders_with_balance_higher_than that accepts a number as a parameter and returns all people who have more money in total of all their accounts than the supplied number. The result should be sorted by account_holders.id ascending.
+
+create procedure usp_get_holders_with_balance_higher_than(input_number decimal(19,4))
+begin
+	select ah.first_name, ah.last_name from account_holders ah
+    join accounts a on ah.id = a.account_holder_id
+    where input_number < (select sum(balance) from accounts where account_holder_id = ah.id group by account_holder_id)
+    group by ah.id
+    order by ah.id;
+end 
+
+-- 10. Future Value Function
+-- Your task is to create a function ufn_calculate_future_value that accepts as parameters – sum (with precision, 4 digits after the decimal point), yearly interest rate (double) and number of years(int). It should calculate and return the future value of the initial sum. The result from the function must be decimal, with percision 4.
+
+create function ufn_calculate_future_value(initial decimal(10,4), yearly_interest_rate double, number_of_years int)
+returns decimal(19,4)
+reads sql data
+begin
+	return initial * POW(1 + yearly_interest_rate, number_of_years);
+end 
